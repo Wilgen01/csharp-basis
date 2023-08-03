@@ -6,12 +6,10 @@
         {
             ReverseString("text to revers");
             FibonacciSequence().ForEach(Console.WriteLine);
-            //FibonacciWithRecursion(1000);
         }
 
         public static string ReverseString(string text)
         {
-            //reverse string
             string result = "";
             int index = 0;
             List<char> charList = new() { };
@@ -35,9 +33,9 @@
             return new string(textReversed);
         }
 
-        public static List<int> FibonacciSequence()
+        public static List<long> FibonacciSequence()
         {
-            List<int> list = new() { 1,1};
+            List<long> list = new() { 1,1};
             
             for(int i = list.Count; i<1000; i++)
             {
