@@ -4,14 +4,19 @@
     {
         public static void Main(string[] args)
         {
-            // reverse string
-            string text = "text to Invert";
+            ReverseString("text to revers");
+            FibonacciSequence().ForEach(Console.WriteLine);
+        }
+
+        public static string ReverseString(string text)
+        {
+            //reverse string
             string result = "";
             int index = 0;
             List<char> charList = new() { };
             char[] charArray = new char[text.Length];
 
-            for (int i = text.Length - 1; i >= 0 ; i--)
+            for (int i = text.Length - 1; i >= 0; i--)
             {
                 result += text[i];
                 charList.Add(text[i]);
@@ -21,14 +26,27 @@
 
             char[] textReversed = text.ToCharArray();
             Array.Reverse(textReversed);
-            Console.WriteLine(result);
-            Console.WriteLine(string.Join("", charList));
-            Console.WriteLine(new string(charArray));
-            Console.WriteLine(new string(textReversed));
+            //Console.WriteLine(result);
+            //Console.WriteLine(string.Join("", charList));
+            //Console.WriteLine(new string(charArray));
+            //Console.WriteLine(new string(textReversed));
 
+            return new string(textReversed);
+        }
 
+        public static List<int> FibonacciSequence()
+        {
+            List<int> list = new() { 1,1};
+            
+            for(int i = list.Count; i<20; i++)
+            {
+                var number1 = list[^1];
+                var number2 = list[^2];
 
+                list.Add(number1 + number2);
+            }
 
+            return list;
         }
     }
 }
