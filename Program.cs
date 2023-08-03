@@ -1,4 +1,6 @@
-﻿namespace csharp_basis
+﻿using System.Collections;
+
+namespace csharp_basis
 {
     public class Program
     {
@@ -55,6 +57,15 @@
                 return num;
             }
             return FibonacciWithRecursion(num-2) + FibonacciWithRecursion(num - 1);
+        }
+
+        public static void CollectionTypes()
+        {
+            int[] arr = new int[2]; //arreglos
+            List<int> list = new List<int>() { 0,1,2}; // listas
+            Stack<int> stack = new Stack<int>(); // pilas
+            Queue<int> queue = new Queue<int>(); // colas
+            Dictionary<int, string> keyValuePairs = new Dictionary<int, string>(); // diccionario
         }
     }
 }
