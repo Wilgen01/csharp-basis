@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 
 namespace csharp_basis.models
 {
-    internal class PersonaDB
+    class PersonaDB
     {
         private string connectionString
             = "Data Source=DESKTOP-L21CB3D;Initial Catalog=TestDb1;" +
@@ -31,6 +26,7 @@ namespace csharp_basis.models
                     persona.nombres = reader.GetString(1);
                     persona.apellidos= reader.GetString(2);
                     persona.edad = reader.GetInt32(3);
+                    persona.id = reader.GetInt32(0);
                     list.Add(persona);
                 }
 
@@ -39,6 +35,28 @@ namespace csharp_basis.models
             }
 
             return list;
+        }
+
+        public void Add(Persona persona)
+        {
+            var query = "INSERT INTO persona(nombres, apellidos, edad) " +
+                        "values(@nombres, @apellidos, @edad)";
+
+            using(SqlConnection connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@nombres", persona.nombres);
+                command.Parameters.AddWithValue("@apellidos", persona.apellidos);
+                command.Parameters.AddWithValue("@edad", persona.edad);
+
+
+                connection.Open();
+                command.ExecuteNonQuery();
+
+                
+
+                connection.Close();
+            }
         }
           
     }
