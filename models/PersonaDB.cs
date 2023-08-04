@@ -58,6 +58,51 @@ namespace csharp_basis.models
                 connection.Close();
             }
         }
+
+        public void Delete(int id)
+        {
+            var query = "DELETE FROM persona WHERE id=@id";
+
+            using(var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                connection.Open();
+                var result = command.ExecuteNonQuery();
+                if (result == 0)
+                {
+                    Console.WriteLine("El Id ingresado no corresponde a ningún registro");
+                }
+
+                connection.Close();
+            }
+        }
+
+        public void Update(Persona persona)
+        {
+            var query = "UPDATE persona SET nombres=@nombres, apellidos=@apellidos, edad=@edad WHERE id=@id";
+
+            using(var connection = new SqlConnection(connectionString)) 
+            {
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@nombres", persona.nombres);
+                command.Parameters.AddWithValue("@apellidos", persona.apellidos);
+                command.Parameters.AddWithValue("@edad", persona.edad);
+                command.Parameters.AddWithValue("@id", persona.id);
+
+
+                connection.Open();
+                var result = command.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    Console.WriteLine("El Id ingresado no corresponde a ningún registro");
+                }
+
+                connection.Close();
+            }
+        }
           
     }
 }

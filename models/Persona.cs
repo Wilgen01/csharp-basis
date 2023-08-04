@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace csharp_basis.models
 {
-    internal class Persona
+    public class Persona
     {
         public int? id { get; set; }
         public string nombres { get; set; }
